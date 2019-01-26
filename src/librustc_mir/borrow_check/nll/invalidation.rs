@@ -479,10 +479,6 @@ impl<'cg, 'cx, 'tcx, 'gcx> InvalidationGenerator<'cx, 'tcx, 'gcx> {
         &mut self,
         location: Location,
     ) {
-        if !self.tcx.two_phase_borrows() {
-            return;
-        }
-
         // Two-phase borrow support: For each activation that is newly
         // generated at this statement, check if it interferes with
         // another borrow.
