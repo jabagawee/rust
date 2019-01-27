@@ -1,0 +1,35 @@
+error[E0384]: cannot assign twice to immutable variable `b`
+  --> $DIR/issue-45199.rs:6:5
+   |
+LL |     let b: Box<isize>;
+   |         - help: make this binding mutable: `mut b`
+...
+LL |     b = Box::new(1);    //~ NOTE first assignment
+   |     - first assignment to `b`
+LL |     b = Box::new(2);    //~ ERROR cannot assign twice to immutable variable `b`
+   |     ^ cannot assign twice to immutable variable
+
+error[E0384]: cannot assign twice to immutable variable `b`
+  --> $DIR/issue-45199.rs:14:5
+   |
+LL |     let b = Box::new(1);    //~ NOTE first assignment
+   |         -
+   |         |
+   |         first assignment to `b`
+   |         help: make this binding mutable: `mut b`
+...
+LL |     b = Box::new(2);        //~ ERROR cannot assign twice to immutable variable `b`
+   |     ^ cannot assign twice to immutable variable
+
+error[E0384]: cannot assign to immutable argument `b`
+  --> $DIR/issue-45199.rs:20:5
+   |
+LL | fn test_args(b: Box<i32>) {  //~ HELP make this binding mutable
+   |              - help: make this binding mutable: `mut b`
+LL |                                 //~| SUGGESTION mut b
+LL |     b = Box::new(2);            //~ ERROR cannot assign to immutable argument `b`
+   |     ^ cannot assign to immutable argument
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0384`.

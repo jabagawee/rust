@@ -1,4 +1,4 @@
-// compile-flags: -Z borrowck=mir -Z two-phase-borrows
+// compile-flags: -Z borrowck=mir
 
 // This is similar to two-phase-reservation-sharing-interference.rs
 // in that it shows a reservation that overlaps with a shared borrow.
