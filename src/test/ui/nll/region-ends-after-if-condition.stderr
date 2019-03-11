@@ -29,7 +29,7 @@ LL |     let value = &my_struct.field;
    |                 ---------------- immutable borrow occurs here
 LL |     if value.is_empty() {
 LL |         my_struct.field.push_str("Hello, world!");
-   |         ^^^^^^^^^^^^^^^ mutable borrow occurs here
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ mutable borrow occurs here
 ...
 LL |     drop(value);
    |          ----- immutable borrow later used here
